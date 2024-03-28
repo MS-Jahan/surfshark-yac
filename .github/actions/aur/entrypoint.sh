@@ -22,7 +22,8 @@ sudo pacman -S --noconfirm archlinux-keyring
 echo "::endgroup::"
 
 echo "::group::Updating checksums on PKGBUILD"
-updpkgsums PKGBUILD
+echo $INPUT_PKGNAME
+updpkgsums $INPUT_PKGNAME
 git diff PKGBUILD
 echo "::endgroup::"
 
