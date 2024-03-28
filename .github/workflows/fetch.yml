@@ -145,7 +145,7 @@ jobs:
         uses: ./.github/actions/aur
         with:
           action: 'updpkgsums'
-          pkgname: ${{ env.pkgbuild }}
+          pkgname: ${{ env.pkgver }}
 
       - name: Commit
         if: ${{ env.pkgbuild != env.pkgver }}
