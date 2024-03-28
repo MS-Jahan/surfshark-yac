@@ -79,7 +79,7 @@ jobs:
           echo "pkgver=${aptver//-/.}" >> $GITHUB_ENV
           echo "source=${source}" >> $GITHUB_ENV
           echo "sha256sums=${sha256sums}" >> $GITHUB_ENV
-          ehco "pkgname=surfshark-yac" >> $GITHUB_ENV
+          echo "pkgname=surfshark-yac" >> $GITHUB_ENV
           
           cat <<-_EOT_ > "./surfshark-yac/PKGBUILD.temp"
           # Maintainer: Dallo <dallo@tutanota.com>
