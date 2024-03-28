@@ -79,11 +79,12 @@ jobs:
           echo "pkgver=${aptver//-/.}" >> $GITHUB_ENV
           echo "source=${source}" >> $GITHUB_ENV
           echo "sha256sums=${sha256sums}" >> $GITHUB_ENV
+          ehco "pkgname=surfshark-yac" >> $GITHUB_ENV
           
           cat <<-_EOT_ > "./surfshark-yac/PKGBUILD.temp"
           # Maintainer: Dallo <dallo@tutanota.com>
           
-          pkgname=surfshark-yac
+          pkgname=${pkgname}
           pkgver=${aptver//-/.}
           pkgrel=1
           pkgdesc="Yet another Surfshark VPN GUI Client for the AUR."
@@ -145,7 +146,7 @@ jobs:
         uses: ./.github/actions/aur
         with:
           action: 'updpkgsums'
-          pkgname: ${{ env.pkgver }}
+          pkgname: ${{ env.pkgname }}
 
       - name: Commit
         if: ${{ env.pkgbuild != env.pkgver }}
