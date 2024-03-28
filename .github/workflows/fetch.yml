@@ -3,6 +3,7 @@ name: Fetch deb package
 on:
   schedule:
     - cron: "*/30 * * * *"
+  workflow_dispatch:
 
 permissions:
   actions: 'write'
@@ -79,7 +80,7 @@ jobs:
           echo "source=${source}" >> $GITHUB_ENV
           echo "sha256sums=${sha256sums}" >> $GITHUB_ENV
           
-          cat <<-_EOT_ > "./surfshark-yac/PKGBUILD"
+          cat <<-_EOT_ > "./surfshark-yac/PKGBUILD.temp"
           # Maintainer: Dallo <dallo@tutanota.com>
           
           pkgname=surfshark-yac
@@ -131,6 +132,13 @@ jobs:
           gh run watch ${{ github.run_id }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Replace temp PKGBUILD if different version
+        run: |
+          #!/usr/bin/env bash
+          set -euxo pipefail
+
+          mv ./surfshark-yac/PKGBUILD.temp ./surfshark-yac/PKGBUILD
 
       - name: Validate package
         if: ${{ env.pkgbuild != env.pkgver }}
