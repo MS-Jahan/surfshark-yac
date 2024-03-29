@@ -24,6 +24,7 @@ echo "::endgroup::"
 echo "::group::Updating checksums on PKGBUILD"
 echo "Before cd"
 pwd
+ls
 cd $HOME/gh-action/$INPUT_PKGNAME
 echo "After cd"
 pwd

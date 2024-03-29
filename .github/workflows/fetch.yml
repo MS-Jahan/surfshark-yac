@@ -18,6 +18,8 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.ref }}
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
 
       - name: Fetch updated package
         run: |
